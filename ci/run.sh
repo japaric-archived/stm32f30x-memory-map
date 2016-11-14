@@ -12,7 +12,7 @@ test_mode() {
         cd $td
 
         ./gen-peripherals.sh
-        test -z $(git status -s)
+        test -z "$(git status -s)"
 
         cd $oldpwd
     fi
