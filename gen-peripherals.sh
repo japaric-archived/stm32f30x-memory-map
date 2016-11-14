@@ -1,9 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
-set -e
+set -ex
 
 main() {
     local svd=STM32F30x.svd
+
+    if [ ! -f $svd ]; then
+        curl -LOs https://github.com/posborne/cmsis-svd/raw/python-0.4/data/STMicro/$svd
+    fi
 
     svd2rust -i $svd tim6 > src/btim.rs
     sed -i 's/\(pub struct \)Tim6/\1BTim/' src/btim.rs
