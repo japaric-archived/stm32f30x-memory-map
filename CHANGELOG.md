@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Unsafe API to directly modify the bits of a register.
+
 ## v0.1.0 - 2016-11-14
 
 ### Added

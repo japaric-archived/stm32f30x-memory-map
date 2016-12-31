@@ -27,6 +27,19 @@ pub struct Cr1 {
 }
 
 impl Cr1 {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&Cr1R, &'w mut Cr1W) -> &'w mut Cr1W
     {
@@ -96,7 +109,7 @@ pub struct Cr1W {
 impl Cr1W {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        Cr1W { bits: 0u32 }
+        Cr1W { bits: 0 }
     }
     # [ doc = "Bit 0 - Counter enable" ]
     pub fn cen(&mut self, value: bool) -> &mut Self {
@@ -166,6 +179,19 @@ pub struct Cr2 {
 }
 
 impl Cr2 {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&Cr2R, &'w mut Cr2W) -> &'w mut Cr2W
     {
@@ -211,7 +237,7 @@ pub struct Cr2W {
 impl Cr2W {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        Cr2W { bits: 0u32 }
+        Cr2W { bits: 0 }
     }
     # [ doc = "Bits 4:6 - Master mode selection" ]
     pub fn mms(&mut self, value: u8) -> &mut Self {
@@ -229,6 +255,19 @@ pub struct Dier {
 }
 
 impl Dier {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&DierR, &'w mut DierW) -> &'w mut DierW
     {
@@ -278,7 +317,7 @@ pub struct DierW {
 impl DierW {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        DierW { bits: 0u32 }
+        DierW { bits: 0 }
     }
     # [ doc = "Bit 8 - Update DMA request enable" ]
     pub fn ude(&mut self, value: bool) -> &mut Self {
@@ -308,6 +347,19 @@ pub struct Sr {
 }
 
 impl Sr {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&SrR, &'w mut SrW) -> &'w mut SrW
     {
@@ -352,7 +404,7 @@ pub struct SrW {
 impl SrW {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        SrW { bits: 0u32 }
+        SrW { bits: 0 }
     }
     # [ doc = "Bit 0 - Update interrupt flag" ]
     pub fn uif(&mut self, value: bool) -> &mut Self {
@@ -372,26 +424,15 @@ pub struct Egr {
 }
 
 impl Egr {
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn write<F>(&self, f: F)
         where F: FnOnce(&mut EgrW) -> &mut EgrW
     {
         let mut w = EgrW::reset_value();
         f(&mut w);
         self.register.write(w.bits);
-    }
-}
-
-# [ derive ( Clone , Copy ) ]
-# [ repr ( C ) ]
-pub struct EgrR {
-    bits: u32,
-}
-
-impl EgrR {
-    # [ doc = "Bit 0 - Update generation" ]
-    pub fn ug(&self) -> bool {
-        const OFFSET: u8 = 0u8;
-        self.bits & (1 << OFFSET) != 0
     }
 }
 
@@ -404,7 +445,7 @@ pub struct EgrW {
 impl EgrW {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        EgrW { bits: 0u32 }
+        EgrW { bits: 0 }
     }
     # [ doc = "Bit 0 - Update generation" ]
     pub fn ug(&mut self, value: bool) -> &mut Self {
@@ -424,6 +465,19 @@ pub struct Cnt {
 }
 
 impl Cnt {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&CntR, &'w mut CntW) -> &'w mut CntW
     {
@@ -474,7 +528,7 @@ pub struct CntW {
 impl CntW {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        CntW { bits: 0u32 }
+        CntW { bits: 0 }
     }
     # [ doc = "Bits 0:15 - Low counter value" ]
     pub fn cnt(&mut self, value: u16) -> &mut Self {
@@ -492,6 +546,19 @@ pub struct Psc {
 }
 
 impl Psc {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&PscR, &'w mut PscW) -> &'w mut PscW
     {
@@ -537,7 +604,7 @@ pub struct PscW {
 impl PscW {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        PscW { bits: 0u32 }
+        PscW { bits: 0 }
     }
     # [ doc = "Bits 0:15 - Prescaler value" ]
     pub fn psc(&mut self, value: u16) -> &mut Self {
@@ -555,6 +622,19 @@ pub struct Arr {
 }
 
 impl Arr {
+    pub fn read_bits(&self) -> u32 {
+        self.register.read()
+    }
+    pub unsafe fn modify_bits<F>(&mut self, f: F)
+        where F: FnOnce(&mut u32)
+    {
+        let mut bits = self.register.read();
+        f(&mut bits);
+        self.register.write(bits);
+    }
+    pub unsafe fn write_bits(&mut self, bits: u32) {
+        self.register.write(bits);
+    }
     pub fn modify<F>(&mut self, f: F)
         where for<'w> F: FnOnce(&ArrR, &'w mut ArrW) -> &'w mut ArrW
     {
@@ -600,7 +680,7 @@ pub struct ArrW {
 impl ArrW {
     # [ doc = r" Reset value" ]
     pub fn reset_value() -> Self {
-        ArrW { bits: 0u32 }
+        ArrW { bits: 0 }
     }
     # [ doc = "Bits 0:15 - Low Auto-reload value" ]
     pub fn arr(&mut self, value: u16) -> &mut Self {
