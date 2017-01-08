@@ -20,6 +20,7 @@ main() {
 
     curl -LSfs https://japaric.github.io/trust/install.sh | \
         sh -s -- \
+           --crate rustfmt \
            --force \
            --git japaric/rustfmt-bin \
            --target x86_64-unknown-linux-gnu
