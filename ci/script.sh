@@ -9,7 +9,7 @@ main() {
         git clone . $td
 
         pushd $td
-        ./gen-peripherals
+        ./gen-peripherals.sh
         test -z "$(git status -s)"
         popd
 
