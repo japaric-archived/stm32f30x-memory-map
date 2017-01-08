@@ -35,7 +35,7 @@ main() {
     rustfmt src/*.rs
     set -e
 
-    xargo build --target thumbv7em-none-eabihf
+    cross build --target thumbv7em-none-eabihf
 }
 
 main
