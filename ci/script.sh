@@ -1,25 +1,22 @@
 set -ex
 
-test_mode() {
+main() {
     if [ $TARGET = x86_64-unknown-linux-gnu ]; then
-        cargo build --target $TARGET
+        cross build --target $TARGET
     else
         local td=$(mktemp -d)
-        local oldpwd=$(pwd)
 
         git clone . $td
 
-        cd $td
-
-        ./gen-peripherals.sh
+        pushd $td
+        ./gen-peripherals
         test -z "$(git status -s)"
+        popd
 
-        cd $oldpwd
+        rm -rf $td
     fi
 }
 
-run() {
-    test_mode
-}
-
-run
+if [ -z $TRAVIS_TAG ]; then
+    main
+fi

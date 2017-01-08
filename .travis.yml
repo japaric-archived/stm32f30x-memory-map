@@ -1,49 +1,29 @@
-cache: cargo
 dist: trusty
 language: rust
-rust: nightly
 services: docker
 sudo: required
 
-env:
-  global:
-    - TARGET=x86_64-unknown-linux-gnu
+rust: nightly
 
+env: TARGET=x86_64-unknown-linux-gnu
 matrix:
   include:
     - env: TARGET=thumbv7em-none-eabihf
 
 install:
-  # NOTE(TRAVIS_BRANCH) Travis is configured to only build *pushes* (not PRs).
-  - if [ $TRAVIS_BRANCH != master ] || [ $TRAVIS_EVENT_TYPE = cron ]; then
-      curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain $TRAVIS_RUST_VERSION;
-      source ~/.cargo/env;
-      case $TARGET in
-        x86_64-apple-darwin | x86_64-unknown-linux-gnu) ;;
-        thumbv*-none-eabi*) rustup component add rust-src ;;
-        *) rustup target add $TARGET;;
-      esac;
-    fi
+  - sh ci/install.sh
+  - source ~/.cargo/env || true
 
 script:
-  # NOTE(TRAVIS_BRANCH) See the NOTE in the `install` section
-  # chmod: Travis can't cache files that are not readable by "others"
-  - if [ $TRAVIS_BRANCH != master ] || [ $TRAVIS_EVENT_TYPE = cron ]; then
-      cargo generate-lockfile;
-      if [[ $TRAVIS_OS_NAME = linux ]]; then
-        sh ci/run-docker.sh $TARGET || exit 1;
-      else
-        sh ci/run.sh || exit 1;
-      fi;
-      chmod -R a+r $HOME/.cargo;
-    fi
+  - bash ci/script.sh
+
+cache: cargo
+before_cache:
+  - chmod -R a+r $HOME/.cargo
 
 branches:
   only:
-    # Release tags
-    - /^v\d+\.\d+\.\d+.*$/
     - auto
-    - master
     - try
 
 notifications:
