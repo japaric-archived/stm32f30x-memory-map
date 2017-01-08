@@ -17,6 +17,12 @@ main() {
            --git japaric/svd2rust \
            --tag v0.2.1 \
            --target x86_64-unknown-linux-gnu
+
+    curl -LSfs https://japaric.github.io/trust/install.sh | \
+        sh -s -- \
+           --force \
+           --git japaric/rustfmt-bin \
+           --target x86_64-unknown-linux-gnu
 }
 
 main
