@@ -51,8 +51,8 @@ const TIM2: usize = 0x40000000;
 // const TIM16: usize = 0x40014400;
 // const TIM17: usize = 0x40014800;
 const USART1: usize = 0x40013800;
-// const USART2: usize = 0x40004400;
-// const USART3: usize = 0x40004800;
+const USART2: usize = 0x40004400;
+const USART3: usize = 0x40004800;
 // const UART4: usize = 0x40004c00;
 // const UART5: usize = 0x40005000;
 const SPI1: usize = 0x40013000;
@@ -225,6 +225,26 @@ pub fn usart1() -> &'static Usart {
 /// USART1 register block (&'static mut)
 pub unsafe fn usart1_mut() -> &'static mut Usart {
     deref_mut(USART1)
+}
+
+/// USART2 register block (&'static)
+pub fn usart2() -> &'static Usart {
+    unsafe { deref(USART2) }
+}
+
+/// USART2 register block (&'static mut)
+pub unsafe fn usart2_mut() -> &'static mut Usart {
+    deref_mut(USART2)
+}
+
+/// USART3 register block (&'static)
+pub fn usart3() -> &'static Usart {
+    unsafe { deref(USART3) }
+}
+
+/// USART3 register block (&'static mut)
+pub unsafe fn usart3_mut() -> &'static mut Usart {
+    deref_mut(USART3)
 }
 
 unsafe fn deref<T>(address: usize) -> &'static T {
