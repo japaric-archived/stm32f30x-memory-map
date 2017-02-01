@@ -38,6 +38,8 @@ const GPIOC: usize = 0x48000800;
 const GPIOD: usize = 0x48000c00;
 const GPIOE: usize = 0x48001000;
 const GPIOF: usize = 0x48001400;
+const GPIOG: usize = 0x48001800;
+const GPIOH: usize = 0x48001c00;
 // const TSC: usize = 0x40024000;
 // const CRC: usize = 0x40023000;
 // const Flash: usize = 0x40022000;
@@ -155,6 +157,26 @@ pub fn gpiof() -> &'static Gpio {
 /// GPIOF register block (&'static mut)
 pub unsafe fn gpiof_mut() -> &'static mut Gpio {
     deref_mut(GPIOF)
+}
+
+/// GPIOG register block (&'static)
+pub fn gpiog() -> &'static Gpio {
+    unsafe { deref(GPIOG) }
+}
+
+/// GPIOG register block (&'static mut)
+pub unsafe fn gpiog_mut() -> &'static mut Gpio {
+    deref_mut(GPIOG)
+}
+
+/// GPIOH register block (&'static)
+pub fn gpioh() -> &'static Gpio {
+    unsafe { deref(GPIOH) }
+}
+
+/// GPIOH register block (&'static mut)
+pub unsafe fn gpioh_mut() -> &'static mut Gpio {
+    deref_mut(GPIOH)
 }
 
 /// I2C1 register block (&'static)
