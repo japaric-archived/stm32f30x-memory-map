@@ -47,8 +47,8 @@ const RCC: usize = 0x40021000;
 // const DMA1: usize = 0x40020000;
 // const DMA2: usize = 0x40020400;
 const TIM2: usize = 0x40000000;
-// const TIM3: usize = 0x40000400;
-// const TIM4: usize = 0x40000800;
+const TIM3: usize = 0x40000400;
+const TIM4: usize = 0x40000800;
 // const TIM15: usize = 0x40014000;
 // const TIM16: usize = 0x40014400;
 // const TIM17: usize = 0x40014800;
@@ -217,6 +217,26 @@ pub fn tim2() -> &'static GpTim {
 /// TIM2 register block (&'static mut)
 pub unsafe fn tim2_mut() -> &'static mut GpTim {
     deref_mut(TIM2)
+}
+
+/// TIM3 register block (&'static)
+pub fn tim3() -> &'static GpTim {
+    unsafe { deref(TIM3) }
+}
+
+/// TIM3 register block (&'static mut)
+pub unsafe fn tim3_mut() -> &'static mut GpTim {
+    deref_mut(TIM3)
+}
+
+/// TIM4 register block (&'static)
+pub fn tim4() -> &'static GpTim {
+    unsafe { deref(TIM4) }
+}
+
+/// TIM4 register block (&'static mut)
+pub unsafe fn tim4_mut() -> &'static mut GpTim {
+    deref_mut(TIM4)
 }
 
 /// TIM6 register block (&'static)
