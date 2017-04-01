@@ -1,3 +1,15 @@
+# Status
+
+This crate has been **SUPERSEDED** by the [stm32f30x] crate. That crate has been
+generated using a newer version of svd2rust and provides full support for the
+stm32f30x family of microcontrollers.
+
+[stm32f30x]: https://github.com/japaric/stm32f30x
+
+-- @japaric, 2017-04-01
+
+---
+
 [![crates.io](https://img.shields.io/crates/d/stm32f30x-memory-map.svg)](https://crates.io/crates/stm32f30x-memory-map)
 [![crates.io](https://img.shields.io/crates/v/stm32f30x-memory-map.svg)](https://crates.io/crates/stm32f30x-memory-map)
 
